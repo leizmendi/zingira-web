@@ -32,4 +32,23 @@ const lang = getLangFromUrl(Astro.url);
     <Footer />
     <!-- Minimal analytics - no cookies, anonymized IP -->
     <script is:inline>
-      if (!n
+      if (!navigator.userAgent.match(/bot|crawl|spider|slurp/i)) {
+        fetch('/api/hit.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            p: location.pathname,
+            r: document.referrer,
+            l: document.documentElement.lang || 'es'
+          })
+        }).catch(function(){});
+      }
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

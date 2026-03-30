@@ -36,7 +36,7 @@ export const ui = {
     'accommodation.bungalow.amount': '100€',
     'accommodation.bungalow.cta': 'Reserva ya',
     'accommodation.tent.title': 'Parcela para tu tienda',
-    'accommodation.tent.desc': '',
+    'accommodation.tent.desc': 'Disponemos de 120 parcelas de todos los tamaños',
     'accommodation.tent.features': [
       'Separadas por setos o arboles para más privacidad.',
       'Tenemos parcelas de todos los tamaños, bajo los arboles o en zonas más abiertas.',
@@ -45,7 +45,7 @@ export const ui = {
     'accommodation.tent.amount': '13,50€',
     'accommodation.tent.cta': 'Más información',
     'accommodation.caravan.title': 'Parcela para tu caravana y autocaravana',
-    'accommodation.caravan.desc': '',
+    'accommodation.caravan.desc': 'Parcelas amplias con opción de toma de corriente',
     'accommodation.caravan.features': [
       'Separadas por setos o arboles para más privacidad. Algunas más abiertas y soleadas.',
       'Con opción de toma de corriente.',
@@ -152,6 +152,7 @@ export const ui = {
     'accommodation.bungalow.amount': '100€-tik',
     'accommodation.bungalow.cta': 'Erreserbatu',
     'accommodation.tent.title': 'Partzela zure dendarako',
+    'accommodation.tent.desc': 'Tamaina guztietako 120 partzela ditugu',
     'accommodation.tent.features': [
       'Landarezko hesiz bananduta daude, norbere intimitatea zaintzeko.',
       'Itzal asko topatuko duzu kanpinean, baina baita itzalik ez duten partzelak ere.',
@@ -160,6 +161,7 @@ export const ui = {
     'accommodation.tent.amount': '13,50€-tik',
     'accommodation.tent.cta': 'Informazio gehiago',
     'accommodation.caravan.title': 'Partzela zure karabana/autokarabanarentzako',
+    'accommodation.caravan.desc': 'Partzela zabalak korronte elektrikoa aukerarekin',
     'accommodation.caravan.features': [
       'Landarezko hesiz bananduta daude, norbere intimitatea zaintzeko.',
       'Korronte elektrikoa aukerarekin.',
@@ -251,6 +253,7 @@ export const ui = {
     'accommodation.bungalow.amount': '€100',
     'accommodation.bungalow.cta': 'Book now',
     'accommodation.tent.title': 'Pitch for your tent',
+    'accommodation.tent.desc': 'We have 120 pitches of all sizes',
     'accommodation.tent.features': [
       'Separated by hedges or trees for more privacy.',
       'Pitches of all sizes, under trees or in more open areas.',
@@ -259,6 +262,7 @@ export const ui = {
     'accommodation.tent.amount': '€13.50',
     'accommodation.tent.cta': 'More information',
     'accommodation.caravan.title': 'Pitch for your caravan & motorhome',
+    'accommodation.caravan.desc': 'Spacious pitches with optional electrical hook-up',
     'accommodation.caravan.features': [
       'Separated by hedges or trees for more privacy. Some more open and sunny.',
       'With optional electrical hook-up.',
@@ -350,6 +354,7 @@ export const ui = {
     'accommodation.bungalow.amount': '100€',
     'accommodation.bungalow.cta': 'Réserver',
     'accommodation.tent.title': 'Emplacement pour votre tente',
+    'accommodation.tent.desc': 'Nous disposons de 120 emplacements de toutes tailles',
     'accommodation.tent.features': [
       'Séparés par des haies ou des arbres pour plus d\'intimité.',
       'Emplacements de toutes tailles, sous les arbres ou dans des zones plus ouvertes.',
@@ -358,6 +363,7 @@ export const ui = {
     'accommodation.tent.amount': '13,50€',
     'accommodation.tent.cta': 'Plus d\'informations',
     'accommodation.caravan.title': 'Emplacement pour votre caravane et camping-car',
+    'accommodation.caravan.desc': 'Emplacements spacieux avec option de branchement électrique',
     'accommodation.caravan.features': [
       'Séparés par des haies ou des arbres pour plus d\'intimité. Certains plus ouverts et ensoleillés.',
       'Avec option de branchement électrique.',

@@ -1,0 +1,65 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const hours = [
+  { label: 'Bar', time: '12:00 – 16:30 / 19:30 – 23:00' },
+  { label: 'Kitchen', time: '13:00 – 16:00 / 19:30 – 23:00' },
+  { label: 'Breakfast', time: '9:00 – 12:00' },
+];
+---
+
+<Layout title={t('restaurant.title')}>
+  <section class="relative pt-28 pb-20 bg-forest text-white">
+    <div class="absolute inset-0 z-0">
+      <img src="/images/restaurante.jpg" alt="Restaurant" class="w-full h-full object-cover opacity-30" />
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-accent font-bold uppercase tracking-widest text-sm mb-4">{t('restaurant.subtitle')}</p>
+      <h1 class="text-4xl sm:text-5xl font-display font-bold mb-4">{t('restaurant.title')}</h1>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <p class="text-gray-700 mb-4 leading-relaxed">{t('restaurant.desc')}</p>
+          <ul class="space-y-2 mb-8 text-gray-600">
+            <li class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              {t('restaurant.breakfast')}
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              {t('restaurant.lunch')}
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              {t('restaurant.dinner')}
+            </li>
+          </ul>
+          <h3 class="text-xl font-display font-bold text-forest mb-4">{t('restaurant.bar.title')}</h3>
+          <p class="text-gray-600 mb-2">{t('restaurant.bar.desc')}</p>
+          <p class="text-sm text-gray-500">{t('restaurant.bar.hours')}</p>
+        </div>
+        <div class="space-y-6">
+          <img src="/images/restaurante.jpg" alt="Restaurant" class="rounded-2xl shadow-lg" />
+          <div class="bg-cream rounded-2xl p-6 shadow-lg">
+            <div class="space-y-3">
+              {hours.map((h) => (
+                <div class="flex items-center justify-between py-2 border-b border-gray-200 last:border-0">
+                  <span class="font-semibold text-forest">{h.label}</span>
+                  <span class="text-gray-600 text-sm">{h.time}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

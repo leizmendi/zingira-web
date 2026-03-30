@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import Contact from './Contact.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const wubookLang: Record<string, string> = { es: '', eu: 'eu', en: 'en', fr: 'fr' };
+
+const rates = [
+  { key: 'rates.concept.adult',      low: '6,50 €',  high: '7,30 €' },
+  { key: 'rates.concept.child',      low: '4,00 €',  high: '4,50 €' },
+  { key: 'rates.concept.pet',        low: '3,20 €',  high: '3,90 €' },
+  { key: 'rates.concept.tent',       low: '7,00 €',  high: '7,90 €' },
+  { key: 'rates.concept.caravan',    low: '7,00 €',  high: '7,90 €' },
+  { key: 'rates.concept.motorhome',  low: '13,50 €', high: '15,20 €' },
+  { key: 'rates.concept.car',        low: '6,50 €',  high: '7,30 €' },
+  { key: 'rates.concept.motorcycle', low: '4,70 €',  high: '5,30 €' },
+  { key: 'rates.concept.electricity',low: '6,00 €',  high: '6,90 €' },
+  { key: 'rates.concept.evCharging', low: '10,50 €', high: '10,50 €' },
+];
+
+const bungalowRates = [
+  { key: 'rates.bungalow.4', lowPrice: '100 €', highPrice: '100 €' },
+  { key: 'rates.bungalow.5', lowPrice: '120 €', highPrice: '120 €' },
+  { key: 'rates.bungalow.6', lowPrice: '130 €', highPrice: '130 €' },
+];
+
+const conditions: string[] = t('rates.conditions');
+---
+
+<Layout title={t('rates.title')}>
+  <!-- Hero small -->
+  <section class="pt-28 pb-16 bg-forest text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl font-display font-bold mb-4">{t('rates.title')}</h1>
+      <div class="bg-accent/90 text-forest rounded-lg p-4 max-w-2xl mx-auto font-semibold text-sm">
+        ⚠️ {t('rates.warning')}
+      </div>
+    </div>
+  </section>
+
+  <!-- Info -->
+  <section class="py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-gray-700 leading-relaxed text-center">
+        {t('rates.info')}
+      </p>
+    </div>
+  </section>
+
+  <!-- Rates table -->
+  <section class="py-12 bg-cream">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-display font-bold text-forest mb-8 text-center">
+        {t('rates.page.title')}
+      </h2>
+
+      <!-- Parcels rates -->
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
+        <div class="bg-primary text-white px-6 py-3">
+          <div class="grid grid-cols-3 text-sm font-bold">
+            <span>{t('rates.table.concept')}</span>
+            <span class="text-center">{t('rates.table.lowSeason')}</span>
+            <span class="text-center">{t('rates.table.highSeason')}</span>
+          </div>
+        </div>
+        {rates.map((rate, i) => (
+          <div class:list={['grid grid-cols-3 px-6 py-3 text-sm', i % 2 === 0 ? 'bg-white' : 'bg-green-50']}>
+            <span class="font-medium text-gray-800">{t(rate.key)}</span>
+            <span class="text-center text-gray-600">{rate.low}</span>
+            <span class="text-center text-gray-600">{rate.high}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- Bungalow rates -->
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
+        <div class="bg-accent text-forest px-6 py-3">
+          <div class="grid grid-cols-3 text-sm font-bold">
+            <span>Bungalows</span>
+            <span class="text-center">{t('rates.table.lowSeason')}</span>
+            <span class="text-center">{t('rates.table.highSeason')}</span>
+          </div>
+        </div>
+        {bungalowRates.map((rate, i) => (
+          <div class:list={['grid grid-cols-3 px-6 py-3 text-sm', i % 2 === 0 ? 'bg-white' : 'bg-yellow-50']}>
+            <span class="font-medium text-gray-800">{t(rate.key)}</span>
+            <span class="text-center text-gray-600">{rate.lowPrice} ({t('rates.bungalow.minNightsLow')})</span>
+            <span class="text-center text-gray-600">{rate.highPrice} ({t('rates.bungalow.minNightsHigh')})</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking section -->
+  <section id="reserva" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-display font-bold text-forest mb-4">
+        {t('rates.booking.title')}
+      </h2>
+      <p class="text-gray-600 mb-8">
+        {t('rates.booking.note')}
+      </p>
+      <div class="bg-cream rounded-2xl p-8 border-2 border-dashed border-primary/30">
+        <div id="_ord_iframe_"></div>
+        <script is:inline src="https://wubook.net/js/wblib.jgz"></script>
+        <script is:inline define:vars={{ wbLang: wubookLang[lang] || '' }}>
+          document.addEventListener('DOMContentLoaded', function() {
+            var WuBook = new _WuBook(1525865828);
+            var wbparams = {
+              lang: wbLang,
+              mobile: 1,
+              height: 'auto',
+              width: '100%'
+            };
+            WuBook.design_iframe("_ord_iframe_", wbparams);
+          });
+        </script>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conditions -->
+  <section class="py-12 bg-cream">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="text-xl font-display font-bold text-forest mb-6">{t('rates.conditions.title')}</h3>
+      <ul class="space-y-3">
+        {conditions.map((c) => (
+          <li class="flex items-start gap-3 text-sm text-gray-700">
+            <span class="text-primary font-bold mt-0.5">•</span>
+            {c}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Contact />
+</Layout>

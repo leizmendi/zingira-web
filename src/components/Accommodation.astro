@@ -1,0 +1,73 @@
+---
+import { getLangFromUrl, useTranslations, getLocalePath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const accommodations = [
+  {
+    key: 'bungalow',
+    image: '/images/bungalow.jpg',
+    color: 'bg-primary',
+  },
+  {
+    key: 'tent',
+    image: '/images/parcelas.jpg',
+    color: 'bg-secondary',
+  },
+  {
+    key: 'caravan',
+    image: '/images/caravanas.jpg',
+    color: 'bg-accent',
+  },
+];
+---
+
+<section class="py-20 bg-cream">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {accommodations.map((acc) => {
+        const features = t(`accommodation.${acc.key}.features`) as string[];
+        return (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
+            <div class="relative h-56 overflow-hidden">
+              <img
+                src={acc.image}
+                alt={t(`accommodation.${acc.key}.title`)}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-display font-bold text-forest mb-2">
+                {t(`accommodation.${acc.key}.title`)}
+              </h3>
+              {t(`accommodation.${acc.key}.desc`) && (
+                <p class="text-gray-600 text-sm mb-3">{t(`accommodation.${acc.key}.desc`)}</p>
+              )}
+              <ul class="space-y-1 mb-4">
+                {Array.isArray(features) && features.map((f: string) => (
+                  <li class="text-sm text-gray-600 flex items-start gap-2">
+                    <span class="text-primary mt-1">✓</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <div class="border-t pt-4 flex items-center justify-between">
+                <div>
+                  <p class="text-xs text-gray-500 uppercase">{t(`accommodation.${acc.key}.price`)}</p>
+                  <p class="text-2xl font-bold text-primary">{t(`accommodation.${acc.key}.amount`)}</p>
+                </div>
+                <a
+                  href={getLocalePath(lang, 'tarifas-y-reservas')}
+                  class="px-4 py-2 bg-primary text-white text-sm font-semibold rounded-full hover:bg-primary-dark transition-colors"
+                >
+                  {t(`accommodation.${acc.key}.cta`)}
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

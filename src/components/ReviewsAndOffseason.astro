@@ -1,0 +1,68 @@
+---
+import { getLangFromUrl, useTranslations, getLocalePath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<!-- Off-season banner -->
+<section class="py-16 bg-primary text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <p class="text-accent font-bold uppercase tracking-widest text-sm mb-4">
+      {t('offseason.label')}
+    </p>
+    <h2 class="text-2xl sm:text-3xl font-display font-bold mb-6 max-w-3xl mx-auto">
+      {t('offseason.title')}
+    </h2>
+    <p class="text-green-200 mb-8 max-w-2xl mx-auto">
+      {t('offseason.text')}
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a href={getLocalePath(lang, 'tarifas-y-reservas')} class="px-8 py-3 bg-accent text-forest font-bold rounded-full hover:bg-yellow-400 transition-colors">
+        {t('offseason.cta')}
+      </a>
+      <a href="tel:+34682261287" class="px-8 py-3 border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-primary transition-colors">
+        +34 682 261 287
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-display font-bold text-forest mb-8">
+      {t('reviews.title')}
+    </h2>
+    <div class="flex items-center justify-center gap-4 mb-8">
+      <div class="flex items-center gap-2">
+        <svg class="w-8 h-8 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+        </svg>
+        <span class="text-4xl font-bold text-forest">{t('reviews.rating')}</span>
+      </div>
+      <span class="text-gray-500">|</span>
+      <a href="https://search.google.com/local/reviews?placeid=ChIJq6qqnv7JUQ0RpZR3oKGNaY0" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">
+        {t('reviews.count')}
+      </a>
+    </div>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a
+        href="https://search.google.com/local/writereview?placeid=ChIJq6qqnv7JUQ0RpZR3oKGNaY0"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-6 py-2 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-colors"
+      >
+        {t('reviews.leave')}
+      </a>
+      <a
+        href="https://www.google.com/search?q=camping+zingira"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-6 py-2 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-colors"
+      >
+        {t('reviews.more')}
+      </a>
+    </div>
+  </div>
+</section>

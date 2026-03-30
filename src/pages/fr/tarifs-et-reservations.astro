@@ -1,0 +1,132 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Contact from '../../components/Contact.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const rates = [
+  { concept: 'Adulte', low: '6,50 €', high: '7,30 €' },
+  { concept: 'Enfant (2-12 ans)', low: '4,00 €', high: '4,50 €' },
+  { concept: 'Animaux', low: '3,20 €', high: '3,90 €' },
+  { concept: 'Tente', low: '7,00 €', high: '7,90 €' },
+  { concept: 'Caravane', low: '7,00 €', high: '7,90 €' },
+  { concept: 'Camping-car / Camper', low: '13,50 €', high: '15,20 €' },
+  { concept: 'Voiture', low: '6,50 €', high: '7,30 €' },
+  { concept: 'Moto', low: '4,70 €', high: '5,30 €' },
+  { concept: 'Électricité', low: '6,00 €', high: '6,90 €' },
+  { concept: 'Recharge voiture électrique', low: '10,50 €', high: '10,50 €' },
+];
+
+const bungalowRates = [
+  { concept: 'Bungalow (4 pers.)', low: '100 € (min. 2 nuits)', high: '100 € (min. 7 nuits)' },
+  { concept: 'Bungalow (5 pers.)', low: '120 € (min. 2 nuits)', high: '120 € (min. 7 nuits)' },
+  { concept: 'Bungalow (6 pers.)', low: '130 € (min. 2 nuits)', high: '130 € (min. 7 nuits)' },
+];
+
+const conditions = [
+  'Hors saison, après Pâques et jusqu\'au début de la saison estivale, nous n\'ouvrons que les week-ends. Check-in à partir du vendredi à 16h30. Check-out jusqu\'au dimanche à tout moment.',
+  'Haute saison : du 1er juillet au 31 août (inclus).',
+  'Offres spéciales disponibles pour les longs séjours.',
+  'Les animaux de compagnie sont acceptés, à condition d\'être tenus en laisse et d\'avoir la documentation à jour.',
+  'Supplément animal en bungalow : 20 €/séjour.',
+  'Les bungalows ne comprennent pas de couvertures, draps ni serviettes.',
+  'L\'entrée dans le bungalow le premier jour se fait à partir de 17h00 et le départ le dernier jour avant 12h00.',
+  'Pour formaliser la réservation du bungalow, un acompte de 25% du prix total est requis.',
+];
+---
+
+<Layout title={t('rates.title')}>
+  <section class="pt-28 pb-16 bg-forest text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl font-display font-bold mb-4">{t('rates.title')}</h1>
+      <div class="bg-accent/90 text-forest rounded-lg p-4 max-w-2xl mx-auto font-semibold text-sm">
+        ⚠️ {t('hero.warning')}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 bg-cream">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-display font-bold text-forest mb-8 text-center">Tarifs 2025</h2>
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
+        <div class="bg-primary text-white px-6 py-3">
+          <div class="grid grid-cols-3 text-sm font-bold">
+            <span>Concept</span>
+            <span class="text-center">Basse saison</span>
+            <span class="text-center">Haute saison</span>
+          </div>
+        </div>
+        {rates.map((rate, i) => (
+          <div class:list={['grid grid-cols-3 px-6 py-3 text-sm', i % 2 === 0 ? 'bg-white' : 'bg-green-50']}>
+            <span class="font-medium text-gray-800">{rate.concept}</span>
+            <span class="text-center text-gray-600">{rate.low}</span>
+            <span class="text-center text-gray-600">{rate.high}</span>
+          </div>
+        ))}
+      </div>
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div class="bg-accent text-forest px-6 py-3">
+          <div class="grid grid-cols-3 text-sm font-bold">
+            <span>Bungalows</span>
+            <span class="text-center">Basse saison</span>
+            <span class="text-center">Haute saison</span>
+          </div>
+        </div>
+        {bungalowRates.map((rate, i) => (
+          <div class:list={['grid grid-cols-3 px-6 py-3 text-sm', i % 2 === 0 ? 'bg-white' : 'bg-yellow-50']}>
+            <span class="font-medium text-gray-800">{rate.concept}</span>
+            <span class="text-center text-gray-600">{rate.low}</span>
+            <span class="text-center text-gray-600">{rate.high}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section réservation -->
+  <section id="reserva" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-display font-bold text-forest mb-4">
+        Réservez votre bungalow
+      </h2>
+      <p class="text-gray-600 mb-8">
+        IMPORTANT : Pour confirmer la réservation, vous devez compléter le processus de paiement par carte, où 25% du montant total du séjour sera débité.
+      </p>
+      <div class="bg-cream rounded-2xl p-8 border-2 border-dashed border-primary/30">
+        <div id="_ord_iframe_"></div>
+        <script is:inline src="https://wubook.net/js/wblib.jgz"></script>
+        <script is:inline>
+          document.addEventListener('DOMContentLoaded', function() {
+            var WuBook = new _WuBook(1525865828);
+            var wbparams = {
+              lang: 'fr',
+              mobile: 1,
+              height: 'auto',
+              width: '100%'
+            };
+            WuBook.design_iframe("_ord_iframe_", wbparams);
+          });
+        </script>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conditions -->
+  <section class="py-12 bg-cream">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="text-xl font-display font-bold text-forest mb-6">Conditions</h3>
+      <ul class="space-y-3">
+        {conditions.map((c) => (
+          <li class="flex items-start gap-3 text-sm text-gray-700">
+            <span class="text-primary font-bold mt-0.5">•</span>
+            {c}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Contact />
+</Layout>

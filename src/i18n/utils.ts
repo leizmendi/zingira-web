@@ -14,7 +14,7 @@ export const ui = {
     'nav.restaurant': 'Restaurante',
     'nav.contact': 'Contacto',
     'hero.title': 'Camping en Orio, Gipuzkoa',
-    'hero.subtitle': 'A 20 km de Donostia-    git commit -m "Add security, analytics, deploy workflow and missing i18n"San Sebastián. En la naturaleza, conócenos',
+    'hero.subtitle': 'A 20 km de Donostia-San Sebastián. En la naturaleza, conócenos',
     'hero.cta': '¿Tienes preguntas?',
     'hero.coast': 'A 3 km de la costa',
     'hero.bungalows': '12 Bungalows',

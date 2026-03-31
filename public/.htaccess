@@ -27,6 +27,9 @@ Header always set Content-Security-Policy "default-src 'self'; script-src 'self'
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # ===== ALLOW OUR OWN /api/ ENDPOINTS =====
+  RewriteRule ^api/ - [L]
+
   # ===== BLOCK DOTFILES AND DOTFOLDERS =====
   RewriteRule (^\.|/\.) - [F]
 
@@ -37,8 +40,6 @@ Header always set Content-Security-Policy "default-src 'self'; script-src 'self'
   # ===== BLOCK PROBING FOR VULNERABILITIES =====
   # WordPress, PHP, common attack paths
   RewriteRule ^(wp-admin|wp-login|wp-content|wp-includes|wordpress|xmlrpc\.php) - [F,L]
-  # Block scripts except our own /api/ endpoints
-  RewriteCond %{REQUEST_URI} !^/api/ [NC]
   RewriteRule \.(php|asp|aspx|jsp|cgi|pl)$ - [F,L]
   RewriteRule ^(admin|administrator|phpmyadmin|pma|cpanel|webmail|cPanel|mysql) - [F,L]
   RewriteRule ^(\.env|\.git|\.svn|\.hg|\.DS_Store|Thumbs\.db) - [F,L]
@@ -49,7 +50,6 @@ Header always set Content-Security-Policy "default-src 'self'; script-src 'self'
 # ===== BLOCK EMPTY USER AGENTS =====
 <IfModule mod_rewrite.c>
   RewriteCond %{HTTP_USER_AGENT} ^$ [NC]
-  RewriteCond %{REQUEST_URI} !^/api/ [NC]
   RewriteRule .* - [F,L]
 </IfModule>
 

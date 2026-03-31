@@ -37,6 +37,8 @@ Header always set Content-Security-Policy "default-src 'self'; script-src 'self'
   # ===== BLOCK PROBING FOR VULNERABILITIES =====
   # WordPress, PHP, common attack paths
   RewriteRule ^(wp-admin|wp-login|wp-content|wp-includes|wordpress|xmlrpc\.php) - [F,L]
+  # Block scripts except our own /api/ endpoints
+  RewriteCond %{REQUEST_URI} !^/api/ [NC]
   RewriteRule \.(php|asp|aspx|jsp|cgi|pl)$ - [F,L]
   RewriteRule ^(admin|administrator|phpmyadmin|pma|cpanel|webmail|cPanel|mysql) - [F,L]
   RewriteRule ^(\.env|\.git|\.svn|\.hg|\.DS_Store|Thumbs\.db) - [F,L]
@@ -72,5 +74,6 @@ Header always set Content-Security-Policy "default-src 'self'; script-src 'self'
 # ===== PREVENT DIRECTORY LISTING =====
 Options -Indexes
 
-# ===== ERROR PAGES =====
-ErrorDocument 404 /404.html
+# ===== ERROR PAGES (with logging) =====
+ErrorDocument 403 /api/log404.php
+ErrorDocument 404 /api/log404.php

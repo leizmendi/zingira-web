@@ -1,0 +1,31 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const sections = [
+  { title: t('legal.owner.title'), text: t('legal.owner.text') },
+  { title: t('legal.purpose.title'), text: t('legal.purpose.text') },
+  { title: t('legal.ip.title'), text: t('legal.ip.text') },
+  { title: t('legal.privacy.title'), text: t('legal.privacy.text') },
+  { title: t('legal.cookies.title'), text: t('legal.cookies.text') },
+  { title: t('legal.liability.title'), text: t('legal.liability.text') },
+  { title: t('legal.jurisdiction.title'), text: t('legal.jurisdiction.text') },
+];
+---
+
+<section class="pt-28 pb-24 bg-cream">
+  <div class="max-w-3xl mx-auto px-4">
+    <h1 class="text-4xl font-display font-bold text-forest mb-10">{t('legal.title')}</h1>
+
+    {sections.map((s) => (
+      <div class="mb-8">
+        <h2 class="text-xl font-display font-bold text-forest/80 mb-2">{s.title}</h2>
+        {s.text.split('\n').map((line: string) => (
+          <p class="text-gray-700 leading-relaxed">{line}</p>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>

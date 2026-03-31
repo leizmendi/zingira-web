@@ -7,8 +7,22 @@
 $passwordHash = getenv('ANALYTICS_PASSWORD_HASH')
     ?: '$2y$10$HPmuGhYse8GHn8eaANB3ReD8m9tSUMIpUnhU6/ziKWOwM5C5khf6W';
 
-// Basic auth
-if (!isset($_SERVER['PHP_AUTH_USER']) || !password_verify($_SERVER['PHP_AUTH_PW'] ?? '', $passwordHash)) {
+// Basic auth (compatible with CGI/FastCGI)
+$authUser = $_SERVER['PHP_AUTH_USER'] ?? '';
+$authPass = $_SERVER['PHP_AUTH_PW'] ?? '';
+if (empty($authUser) && !empty($_SERVER['HTTP_AUTHORIZATION'])) {
+    $decoded = base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6));
+    if ($decoded && strpos($decoded, ':') !== false) {
+        list($authUser, $authPass) = explode(':', $decoded, 2);
+    }
+}
+if (empty($authUser) && !empty($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+    $decoded = base64_decode(substr($_SERVER['REDIRECT_HTTP_AUTHORIZATION'], 6));
+    if ($decoded && strpos($decoded, ':') !== false) {
+        list($authUser, $authPass) = explode(':', $decoded, 2);
+    }
+}
+if (empty($authUser) || !password_verify($authPass, $passwordHash)) {
     header('WWW-Authenticate: Basic realm="Analytics"');
     http_response_code(401);
     die('Acceso denegado');

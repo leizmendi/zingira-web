@@ -28,7 +28,7 @@ Header always set Content-Security-Policy "default-src 'self'; script-src 'self'
   RewriteEngine On
 
   # ===== ALLOW OUR OWN /api/ ENDPOINTS =====
-  RewriteRule ^api/ - [L]
+  RewriteRule ^api/ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
 
   # ===== BLOCK DOTFILES AND DOTFOLDERS =====
   RewriteRule (^\.|/\.) - [F]

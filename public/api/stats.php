@@ -2,12 +2,10 @@
 // Simple analytics dashboard for Camping Zingira
 // Protected by password - change the hash below after first setup
 
-// Password: set via environment or change this hash
-// Generate a new hash: php -r "echo password_hash('tu_contraseña', PASSWORD_DEFAULT);"
-$passwordHash = getenv('ANALYTICS_PASSWORD_HASH');
-if (!$passwordHash) {
-    die('Configure ANALYTICS_PASSWORD_HASH en el servidor.');
-}
+// Password: hardcoded hash (bcrypt)
+// To change: php -r "echo password_hash('nueva_contraseña', PASSWORD_DEFAULT);"
+$passwordHash = getenv('ANALYTICS_PASSWORD_HASH')
+    ?: '$2y$10$HPmuGhYse8GHn8eaANB3ReD8m9tSUMIpUnhU6/ziKWOwM5C5khf6W';
 
 // Basic auth
 if (!isset($_SERVER['PHP_AUTH_USER']) || !password_verify($_SERVER['PHP_AUTH_PW'] ?? '', $passwordHash)) {

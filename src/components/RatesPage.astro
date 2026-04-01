@@ -112,7 +112,9 @@ const conditions: string[] = t('rates.conditions');
         {t('rates.booking.note')}
       </p>
       <div class="bg-cream rounded-2xl p-8 border-2 border-dashed border-primary/30">
-        <div id="_ord_iframe_"></div>
+        <div id="_ord_iframe_">
+          <a href="https://wubook.net" target="_blank" rel="noopener noreferrer">WuBook</a>
+        </div>
         <script is:inline src="https://wubook.net/js/wblib.jgz"></script>
         <script is:inline define:vars={{ wbLang: wubookLang[lang] || '' }}>
           document.addEventListener('DOMContentLoaded', function() {

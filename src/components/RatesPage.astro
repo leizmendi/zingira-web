@@ -111,18 +111,18 @@ const conditions: string[] = t('rates.conditions');
       <p class="text-gray-600 mb-8">
         {t('rates.booking.note')}
       </p>
-      <div class="bg-cream rounded-2xl p-8 border-2 border-dashed border-primary/30 max-h-[70vh] overflow-y-auto lg:max-h-none lg:overflow-visible">
+      <div id="wubook-wrapper" class="bg-cream rounded-2xl p-8 border-2 border-dashed border-primary/30">
         <div id="_ord_iframe_">
           <a href="https://wubook.net" target="_blank" rel="noopener noreferrer">WuBook</a>
         </div>
         <script is:inline src="https://wubook.net/js/wblib.jgz"></script>
         <script is:inline define:vars={{ wbLang: wubookLang[lang] || '' }}>
           document.addEventListener('DOMContentLoaded', function() {
+            var isMobile = window.innerWidth < 1024;
             var WuBook = new _WuBook(1525865828);
             var wbparams = {
               lang: wbLang,
-              mobile: 1,
-              height: 'auto',
+              height: isMobile ? 700 : 'auto',
               width: '100%'
             };
             WuBook.design_iframe("_ord_iframe_", wbparams);

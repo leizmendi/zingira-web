@@ -29,8 +29,14 @@ const t = useTranslations(lang);
         <a href={getLocalePath(lang, 'tarifas-y-reservas')} class="hover:text-accent transition-colors font-medium">
           {t('nav.rates')}
         </a>
+        <a href={`${getLocalePath(lang)}#alojamiento`} class="hover:text-accent transition-colors font-medium">
+          {t('nav.accommodation')}
+        </a>
         <a href={getLocalePath(lang, 'restaurante')} class="hover:text-accent transition-colors font-medium">
           {t('nav.restaurant')}
+        </a>
+        <a href={getLocalePath(lang, 'como-llegar')} class="hover:text-accent transition-colors font-medium">
+          {t('nav.directions')}
         </a>
         <a href={`${getLocalePath(lang)}#contacto`} class="hover:text-accent transition-colors font-medium">
           {t('nav.contact')}
@@ -88,8 +94,14 @@ const t = useTranslations(lang);
       <a href={getLocalePath(lang, 'tarifas-y-reservas')} class="block py-2 hover:text-accent transition-colors font-medium">
         {t('nav.rates')}
       </a>
+      <a href={`${getLocalePath(lang)}#alojamiento`} class="block py-2 hover:text-accent transition-colors font-medium">
+        {t('nav.accommodation')}
+      </a>
       <a href={getLocalePath(lang, 'restaurante')} class="block py-2 hover:text-accent transition-colors font-medium">
         {t('nav.restaurant')}
+      </a>
+      <a href={getLocalePath(lang, 'como-llegar')} class="block py-2 hover:text-accent transition-colors font-medium">
+        {t('nav.directions')}
       </a>
       <a href={`${getLocalePath(lang)}#contacto`} class="block py-2 hover:text-accent transition-colors font-medium">
         {t('nav.contact')}

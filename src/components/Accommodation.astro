@@ -23,8 +23,24 @@ const accommodations = [
 ];
 ---
 
-<section class="py-20 bg-cream">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="alojamiento">
+  <!-- Section hero -->
+  <div class="relative h-48 md:h-64 flex items-center justify-center overflow-hidden">
+    <img
+      src="/images/bungalow.jpg"
+      alt="Camping Zingira bungalows"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-forest/50"></div>
+    <h2 class="relative z-10 text-3xl md:text-4xl font-display font-bold text-white text-center">
+      {t('accommodation.title')}
+    </h2>
+  </div>
+
+  <!-- Content -->
+  <div class="py-20 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {accommodations.map((acc) => {
         const features = t(`accommodation.${acc.key}.features`) as string[];
@@ -69,5 +85,6 @@ const accommodations = [
         );
       })}
     </div>
+  </div>
   </div>
 </section>

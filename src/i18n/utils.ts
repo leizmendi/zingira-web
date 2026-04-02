@@ -109,7 +109,6 @@ export const ui = {
     'rates.bungalow.minNightsHigh': 'mín. 7 noches',
     'rates.conditions.title': 'Condiciones',
     'rates.conditions': [
-      'Fuera de temporada tras semana santa y hasta el comienzo de la temporada de verano abrimos solo fines de semana. Check-in desde el viernes a partir de las 16:30. Check-out hasta el Domingo a cualquier hora.',
       'Temporada alta: del 1 de julio al 31 de agosto (ambos inclusive).',
       'Disponemos de ofertas especiales para largas estancias.',
       'Se admiten animales de compañía, siempre que estos vayan amarrados y con la documentación en regla.',
@@ -255,7 +254,6 @@ export const ui = {
     'rates.bungalow.minNightsHigh': 'gutx. 7 gau',
     'rates.conditions.title': 'Baldintzak',
     'rates.conditions': [
-      'Denboralditik kanpo, Aste Santuaren ondoren eta uda-denboraldia hasi arte asteburuetan bakarrik zabaltzen dugu. Check-in ostiraletik 16:30etik aurrera. Check-out igandea arte edonoiz.',
       'Goi-denboraldia: uztailaren 1etik abuztuaren 31ra (biak barne).',
       'Egonaldi luzeentzako eskaintza bereziak ditugu.',
       'Maskotei ongi etorria egiten zaie, beti ere loturik eta dokumentazioa egunean badute.',
@@ -401,7 +399,6 @@ export const ui = {
     'rates.bungalow.minNightsHigh': 'min. 7 nights',
     'rates.conditions.title': 'Conditions',
     'rates.conditions': [
-      'Off-season after Easter until the start of the summer season we only open on weekends. Check-in from Friday at 4:30 PM. Check-out until Sunday at any time.',
       'High season: from July 1 to August 31 (inclusive).',
       'Special offers available for long stays.',
       'Pets are allowed, provided they are leashed and their documentation is up to date.',
@@ -547,7 +544,6 @@ export const ui = {
     'rates.bungalow.minNightsHigh': 'min. 7 nuits',
     'rates.conditions.title': 'Conditions',
     'rates.conditions': [
-      'Hors saison, apr\u00e8s P\u00e2ques et jusqu\'au d\u00e9but de la saison estivale, nous n\'ouvrons que les week-ends. Check-in \u00e0 partir du vendredi \u00e0 16h30. Check-out jusqu\'au dimanche \u00e0 tout moment.',
       'Haute saison : du 1er juillet au 31 ao\u00fbt (inclus).',
       'Offres sp\u00e9ciales disponibles pour les longs s\u00e9jours.',
       'Les animaux de compagnie sont accept\u00e9s, \u00e0 condition d\'\u00eatre tenus en laisse et d\'avoir la documentation \u00e0 jour.',

@@ -24,6 +24,23 @@ const t = useTranslations(lang);
       <p class="text-xl sm:text-2xl text-green-200 mb-8 font-light">
         {t('hero.subtitle')}
       </p>
+
+      <!-- Season announcement banner -->
+      <div class="mb-8 animate-banner">
+        <div class="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-4 bg-white/15 backdrop-blur-md border border-accent/40 rounded-2xl px-6 py-4">
+          <span class="flex items-center gap-2 text-white font-semibold text-lg">
+            <span class="inline-block w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
+            {t('hero.banner.dates')}
+          </span>
+          <a href={getLocalePath(lang, 'tarifas-y-reservas')} class="inline-flex items-center gap-2 px-5 py-2 bg-accent text-forest font-bold rounded-full hover:bg-yellow-400 hover:scale-105 transition-all text-base">
+            {t('hero.banner.cta')}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
       <div class="flex flex-wrap gap-4 mb-12">
         <a href={`${getLocalePath(lang)}#contacto`} class="inline-flex items-center px-8 py-3 bg-accent text-forest font-bold rounded-full hover:bg-yellow-400 transition-colors text-lg">
           {t('hero.cta')}
@@ -69,3 +86,23 @@ const t = useTranslations(lang);
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes bannerSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(-4px) scale(1.01);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .animate-banner {
+    animation: bannerSlideIn 0.8s ease-out 0.5s both;
+  }
+</style>

@@ -23,6 +23,25 @@ const lang = getLangFromUrl(Astro.url);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
     <title>{title} | Camping Zingira</title>
+    <!-- Language redirect: saved preference or browser detection (only on root /) -->
+    <script is:inline>
+    (function() {
+      if (location.pathname !== '/') return;
+      var supported = ['es', 'eu', 'en', 'fr'];
+      var saved;
+      try { saved = localStorage.getItem('zingira-lang'); } catch(e) { return; }
+      if (saved && saved !== 'es' && supported.indexOf(saved) !== -1) {
+        location.replace('/' + saved + '/');
+        return;
+      }
+      if (!saved) {
+        var bl = (navigator.language || '').substring(0, 2).toLowerCase();
+        if (bl !== 'es' && supported.indexOf(bl) !== -1) {
+          location.replace('/' + bl + '/');
+        }
+      }
+    })();
+    </script>
   </head>
   <body class="bg-cream text-gray-800 font-sans">
     <Header />
@@ -43,6 +62,18 @@ const lang = getLangFromUrl(Astro.url);
           })
         }).catch(function(){});
       }
+    </script>
+    <!-- Save language preference and handle switcher clicks -->
+    <script is:inline>
+    (function() {
+      var lang = document.documentElement.lang || 'es';
+      try { localStorage.setItem('zingira-lang', lang); } catch(e) {}
+      document.querySelectorAll('[data-lang-switch]').forEach(function(a) {
+        a.addEventListener('click', function() {
+          try { localStorage.setItem('zingira-lang', this.getAttribute('data-lang-switch')); } catch(e) {}
+        });
+      });
+    })();
     </script>
   </body>
 </html>

@@ -107,7 +107,7 @@ export const ui = {
     'rates.bungalow.6': 'Bungalow (6 personas)',
     'rates.bungalow.minNightsLow': 'mín. 2 noches',
     'rates.bungalow.minNightsHigh': 'mín. 7 noches',
-    'rates.conditions.title': 'Condiciones',
+    'a.title': 'Condiciones',
     'rates.conditions': [
       'Temporada alta: del 1 de julio al 31 de agosto (ambos inclusive).',
       'Disponemos de ofertas especiales para largas estancias.',

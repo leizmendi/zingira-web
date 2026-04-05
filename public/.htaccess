@@ -30,6 +30,10 @@ Header always set Content-Security-Policy "default-src 'self'; script-src 'self'
   # ===== ALLOW OUR OWN /api/ ENDPOINTS =====
   RewriteRule ^api/ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
 
+  # ===== REDIRECT /es/ TO ROOT (default locale) =====
+  RewriteRule ^es/?$ / [R=301,L]
+  RewriteRule ^es/(.+)$ /$1 [R=301,L]
+
   # ===== BLOCK DOTFILES AND DOTFOLDERS =====
   RewriteRule (^\.|/\.) - [F]
 

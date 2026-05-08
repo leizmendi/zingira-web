@@ -10,4 +10,7 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+  redirects: {
+    '/fr/restaurant-vegetarien': '/fr/restaurant',
+  },
 });

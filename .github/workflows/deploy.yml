@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
@@ -28,21 +28,27 @@ jobs:
         run: npm run build
 
       - name: Deploy via FTP (Hosting 1)
+        if: ${{ secrets.FTP_HOST != '' && secrets.FTP_USER != '' && secrets.FTP_PASS != '' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
+          protocol: ${{ vars.FTP_PROTOCOL_1 || 'ftps' }}
+          port: ${{ vars.FTP_PORT_1 || 21 }}
           local-dir: ./dist/
           server-dir: ${{ secrets.FTP_REMOTE_DIR }}
           dangerous-clean-slate: false
 
       - name: Deploy via FTP (Hosting 2)
+        if: ${{ secrets.FTP_HOST_2 != '' && secrets.FTP_USER_2 != '' && secrets.FTP_PASS_2 != '' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST_2 }}
           username: ${{ secrets.FTP_USER_2 }}
           password: ${{ secrets.FTP_PASS_2 }}
+          protocol: ${{ vars.FTP_PROTOCOL_2 || 'ftps' }}
+          port: ${{ vars.FTP_PORT_2 || 21 }}
           local-dir: ./dist/
           server-dir: ${{ secrets.FTP_REMOTE_DIR_2 }}
           dangerous-clean-slate: false
